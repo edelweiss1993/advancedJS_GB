@@ -10,6 +10,7 @@
             flex-direction: column;
             width: 600px;
             gap: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -62,15 +63,14 @@
 
         function makeHTML() {
             for (let i = 0; i < initialData.length; i++) {
-                document.querySelector('.text').innerHTML += `<div>
+                for (let j = 0; j < initialData[i].reviews.length; j++) {
+                    document.querySelector('.text').innerHTML += `<div>
                         <b>${initialData[i].product}</b>
                         <div style="border: 1px solid gray" class=${i}>
-                            <p>${(initialData[i].reviews).toString}</p>
+                            <p>${initialData[i].reviews[j].text}</p>
                         </div>
                     </div>`
-                    //for (let j = 0; j < initialData[i].reviews.length; j++) {
-                    //    document.querySelector(`.${i}`).innerHTML += `<p>initialData[i].reviews[j].text</p>`
-                    //}
+                }
             }
         }
 
