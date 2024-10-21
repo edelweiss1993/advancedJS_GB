@@ -10,7 +10,7 @@
             flex-direction: column;
             width: 600px;
             gap: 10px;
-            margin-top: 20px;
+            margin-top: 80px;
         }
     </style>
 </head>
@@ -55,7 +55,7 @@
             },
         ];
 
-
+        let index = [];
 
         function makeHTML() {
             for (let i = 0; i < initialData.length; i++) {
@@ -66,6 +66,7 @@
                             <p>${initialData[i].reviews[j].text}</p>
                         </div>
                     </div>`
+                    index.push(initialData[i].reviews[j].id)
                 }
             }
             document.querySelector('form').innerHTML = `<input required type="text" class="input" placeholder="Продукт">
@@ -78,6 +79,7 @@
         
 
         function makeComment() {
+            let newId = Math.max(...index)
             let obj = {
                 product: '',
                 reviews: [
@@ -87,11 +89,12 @@
                     }
                 ]
             }
-            if (((document.querySelector('textarea').value).length > 500) || ((document.querySelector('textarea').value).length < 50)) {
+            if (((document.querySelector('textarea').value).length > 500) || ((document.querySelector('textarea').value).length < 10)) {
                 console.log("Неподходящая длина")
             } else {
                 obj.product = document.querySelector('.input').value;
                 obj.reviews[0].text = document.querySelector('textarea').value;
+                obj.reviews[0].id = newId + 1;
                 initialData.push(obj);
                 document.querySelector('.text').innerHTML = '';
                 makeHTML();
