@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 600px;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="text">
+
+    </div>
+    <form>
+        <input type="text" placeholder="Продукт">
+        <textarea placeholder="Ваш отзыв"></textarea>
+        <input type="submit">
+    </form>
+    <script>
+        // Задание 2
+        const initialData = [
+            {
+                product: "Apple iPhone 13",
+                reviews: [
+                    {
+                        id: "1",
+                        text: "Отличный телефон! Батарея держится долго.",
+                    },
+                    {
+                        id: "2",
+                        text: "Камера супер, фото выглядят просто потрясающе.",
+                    },
+                ],
+            },
+            {
+                product: "Samsung Galaxy Z Fold 3",
+                reviews: [
+                    {
+                        id: "3",
+                        text: "Интересный дизайн, но дорогой.",
+                    },
+                ],
+            },
+            {
+                product: "Sony PlayStation 5",
+                reviews: [
+                    {
+                        id: "4",
+                        text: "Люблю играть на PS5, графика на высоте.",
+                    },
+                ],
+            },
+        ];
+
+
+
+        function makeHTML() {
+            for (let i = 0; i < initialData.length; i++) {
+                document.querySelector('.text').innerHTML += `<div>
+                        <b>${initialData[i].product}</b>
+                        <div style="border: 1px solid gray" class=${i}>
+                            <p>${(initialData[i].reviews).toString}</p>
+                        </div>
+                    </div>`
+                    //for (let j = 0; j < initialData[i].reviews.length; j++) {
+                    //    document.querySelector(`.${i}`).innerHTML += `<p>initialData[i].reviews[j].text</p>`
+                    //}
+            }
+        }
+
+        makeHTML();
+        
+    </script>
+</body>
+</html>

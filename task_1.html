@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Задание 1
+
+        class Bibliotheka {
+            #books = [];
+
+            get books() {
+                return this.#books;
+            };
+
+            /*set books(value) {
+                this.#books = value;
+            }*/
+
+
+            allBooks() {
+                this.#books.forEach(item => {
+                    console.log(item)
+                })
+            }
+
+
+            addBook(book) {
+                try {
+                    if (this.#books.indexOf(book) != -1) {
+                        throw new Error('Такая книга уже существует');
+                    } else {
+                        this.#books.push(book)
+                    }
+                }
+                catch(error) {
+                    //throw new Error('Ошибка добавления!');
+                }
+                finally {}
+            }
+
+            removeBook(book) {
+                try {
+                    if (this.#books.indexOf(book) != -1) {
+                        this.#books.splice(this.#books.indexOf(book), 1)
+                    } else {
+                        throw new Error('Такой книги в библиотеке нет');
+                    }
+                }
+                catch(error) {
+                    throw new Error('Такой книги в библиотеке нет');
+                }
+                finally {}
+            }
+
+            hasBook(book){
+                if (this.#books.indexOf(book) != -1) {
+                    console.log(true)
+                    return true;
+                } else {
+                    console.log(false);
+                    return false;
+                }
+            }
+
+            constructor(books) {
+                this.#books = books;
+
+                try {
+                    let setBooks = new Set(books);
+                    let setArr = Array.from(setBooks)
+                    if (this.#books.length !== setArr.length) {
+                        throw new Error('В списке книг есть дубли')
+                    }
+                    
+                }
+                catch(error) {
+                    throw new Error('В списке книг есть дубли')
+                }
+                finally{
+
+                }
+
+            }
+
+
+        }
+
+        let library = new Bibliotheka(['111', '222']);
+
+        library.addBook('Евгений Онегин');
+        library.addBook('Мертвые души');
+        library.addBook('Герой нашего времени');
+
+        library.allBooks()
+
+        library.removeBook('Мертвые души');
+
+        library.allBooks();
+
+        library.hasBook('Евгений Онегин');
+        library.hasBook('123');
+
+    </script>
+</body>
+</html>
