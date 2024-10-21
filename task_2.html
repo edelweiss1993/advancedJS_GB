@@ -16,12 +16,8 @@
 </head>
 <body>
     <div class="text">
-
     </div>
     <form>
-        <input type="text" placeholder="Продукт">
-        <textarea placeholder="Ваш отзыв"></textarea>
-        <input type="submit">
     </form>
     <script>
         // Задание 2
@@ -72,9 +68,38 @@
                     </div>`
                 }
             }
+            document.querySelector('form').innerHTML = `<input required type="text" class="input" placeholder="Продукт">
+                                                        <textarea required placeholder="Ваш отзыв"></textarea>
+                                                        <p class="submit" style="border: 1px solid gray">Отправить</p>`
+            document.querySelector('.submit').onclick = makeComment;
+        }
+        makeHTML();
+
+        
+
+        function makeComment() {
+            let obj = {
+                product: '',
+                reviews: [
+                    {
+                        id: 0,
+                        text: " "
+                    }
+                ]
+            }
+            if (((document.querySelector('textarea').value).length > 500) || ((document.querySelector('textarea').value).length < 10)) {
+                console.log("Неподходящая длина")
+            } else {
+                obj.product = document.querySelector('.input').value;
+                obj.reviews[0].text = document.querySelector('textarea').value;
+                initialData.push(obj);
+                document.querySelector('.text').innerHTML = '';
+                makeHTML();
+            }
+
         }
 
-        makeHTML();
+        
         
     </script>
 </body>
